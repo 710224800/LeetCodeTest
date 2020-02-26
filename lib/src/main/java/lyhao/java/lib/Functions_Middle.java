@@ -3,29 +3,9 @@ package lyhao.java.lib;
 import java.util.HashMap;
 
 /**
- * Created by luyanhao on 2020/1/19.
+ * Created by luyanhao on 2020/2/26.
  */
-public class Functions {
-
-
-
-    /**
-     * 辗转相除求最大公约数
-     * @param a
-     * @param b
-     * @return
-     */
-    public static int zhanzhuanXiangchu(int a, int b){
-        int temp;
-        while (b != 0){
-            temp = a % b;
-            a = b;
-            b = temp;
-            System.out.println("a=" + a + " b=" + b);
-        }
-        return a;
-    }
-
+public class Functions_Middle {
     /**
      * 字符串转换整数(atoi)
      * @param str
