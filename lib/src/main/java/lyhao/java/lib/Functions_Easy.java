@@ -6,6 +6,42 @@ package lyhao.java.lib;
  */
 public class Functions_Easy {
 
+    public static int strStr(String haystack, String needle){
+
+        return -1;
+    }
+
+    /**
+     * 快乐数
+     * 快慢指针（找环形链表）的思想，找结果有没有重合 如果重合，看是不是等于1，如果等于1则是快乐数，反之不是
+     * @param n
+     * @return
+     */
+    public static boolean isHappy(int n) {
+        int slow = cal(n);
+        int fast = cal(n); fast = cal(fast);
+        while (slow != fast && slow != 1 && fast != 1) {
+            slow = cal(slow);
+            fast = cal(fast);
+            fast = cal(fast);
+        }
+        if(slow == 1 || fast == 1){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private static int cal(int n){
+        int result = 0;
+        do{
+            int a = n % 10;
+            result += a * a;
+            n = n/10;
+        } while (n > 0);
+        return result;
+    }
+
     /**
      * 找字符串数组，的最大公共前缀 NO.1
      * @param strs
