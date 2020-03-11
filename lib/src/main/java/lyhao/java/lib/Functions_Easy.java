@@ -12,6 +12,38 @@ public class Functions_Easy {
     }
 
     /**
+     * 反转二进制位
+     *
+     * 1 取当前 n 的最后一位：n & 1
+     * 2 将最后一位移动到对应位置，第一次为 将最后一位左移 31 位，第二次是 30 位，即：31、30、29... 1、0，写作代码 bit << 31;
+     * 3 退出条件，二进制反转时，如果剩余位数全位 0，则可以不用再反转。
+     *
+     * @param n
+     * @return
+     */
+    public static int reverseBits(int n) {
+        StringBuilder before = new StringBuilder(Integer.toBinaryString(n));
+        int bLen = before.length();
+        for (int i = 0; i < 32 - bLen; i++){ //算上符号位是32位
+            before.insert(0, "0");
+        }
+        System.out.println("reverse Before=" + before.toString());
+
+        int ans = 0;
+        for (int bitsSize = 31; n != 0; n = n >>> 1, bitsSize--) { //左移31位即能将最后一位移动到第一位
+            ans += (n & 1) << bitsSize;
+
+            StringBuilder result = new StringBuilder(Integer.toBinaryString(ans));
+            int rLen = result.length();
+            for (int i = 0; i < 32 - rLen; i++){ //算上符号位是32位
+                result.insert(0, "0");
+            }
+            System.out.println("reverse  After=" + result.toString());
+        }
+        return ans;
+    }
+
+    /**
      * 快乐数
      * 快慢指针（找环形链表）的思想，找结果有没有重合 如果重合，看是不是等于1，如果等于1则是快乐数，反之不是
      * @param n
