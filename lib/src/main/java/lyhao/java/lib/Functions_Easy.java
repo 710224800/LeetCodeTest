@@ -12,6 +12,49 @@ public class Functions_Easy {
     }
 
     /**
+     * 链表反转（双指针，也可以叫三指针）
+     * @param head
+     * @return
+     */
+    public static ListNode reverseList2(ListNode head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode pre = null;
+        ListNode cur = head;
+
+        while(cur != null){
+            ListNode temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
+        }
+
+        return pre;
+    }
+
+    /**
+     * 链表反转（递归）
+     * @param head
+     * @return
+     */
+    public static ListNode reverseList(ListNode head) {
+        if(head == null || head.next == null){
+            return head;
+        }
+        ListNode node = reverseList(head.next); // 先反转后边的
+        head.next.next = head; //最后反转头节点
+        head.next = null;
+        return node;
+    }
+
+    class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) { val = x; }
+    }
+
+    /**
      * 反转二进制位
      *
      * 1 取当前 n 的最后一位：n & 1
