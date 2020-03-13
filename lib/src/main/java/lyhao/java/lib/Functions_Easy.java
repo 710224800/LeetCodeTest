@@ -12,6 +12,27 @@ public class Functions_Easy {
     }
 
     /**
+     * 反转字条串
+     * @param s
+     * @return
+     */
+    public static char[] reverseString(char[] s) {
+        if(s == null || s.length == 0){
+            return s;
+        }
+        int start = 0;
+        int end = s.length - 1;
+        while(start <= end){
+            char tempC = s[start];
+            s[start] = s[end];
+            s[end] = tempC;
+            start ++;
+            end --;
+        }
+        return s;
+    }
+
+    /**
      * 链表反转（双指针，也可以叫三指针）
      * @param head
      * @return
