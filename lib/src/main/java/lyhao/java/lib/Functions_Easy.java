@@ -1,6 +1,8 @@
 package lyhao.java.lib;
 
 
+import java.util.Arrays;
+
 /**
  * Created by luyanhao on 2020/1/19.
  */
@@ -10,6 +12,35 @@ public class Functions_Easy {
 
         return -1;
     }
+
+    /**
+     * 多数元素--给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。
+     * @param nums
+     * @return
+     */
+    public static int majorityElement(int[] nums) {
+        Arrays.sort(nums);  //排序后返回 n/2个元素，必定是多数元素
+        return nums[nums.length / 2];
+//        int majorCount = nums.length / 2;
+//        for(int item : nums){
+//            if(itemCount(item, nums) > majorCount){
+//                return item;
+//            }
+//        }
+//        return 0;
+    }
+
+//    private static int itemCount(int item, int[] nums){
+//        int count = 0;
+//        for(int ite : nums){
+//            if(ite == item){
+//                count ++;
+//            }
+//        }
+//        return count;
+//    }
+
+
 
     /**
      * 反转字条串
