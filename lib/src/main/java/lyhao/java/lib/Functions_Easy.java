@@ -2,6 +2,10 @@ package lyhao.java.lib;
 
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import javafx.util.Pair;
 
 /**
  * Created by luyanhao on 2020/1/19.
@@ -11,6 +15,61 @@ public class Functions_Easy {
     public static int strStr(String haystack, String needle){
 
         return -1;
+    }
+
+    /**
+     * 递归求二叉树的深度,可能会爆栈
+     * @param root
+     * @return
+     */
+    public static int maxDepth(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        int lDepth = 0, rDepth = 0;
+        if (root.left != null){
+            lDepth = maxDepth(root.left);
+        }
+        if (root.right != null){
+            rDepth = maxDepth(root.right);
+        }
+        return Math.max(lDepth, rDepth) + 1;
+    }
+
+    /**
+     * 宽度优先(层次遍历)，求深度，防止爆栈 用队列实现
+     * @param root
+     * @return
+     */
+    public static int maxDepth2(TreeNode root) {
+        if(root == null){
+            return 0;
+        }
+        int depth = 0;
+        Queue<Pair<TreeNode, Integer>> q = new LinkedList<>();
+        q.add(new Pair<>(root, 1));
+        while(!q.isEmpty()){
+            Pair<TreeNode, Integer> pair = q.poll();
+            TreeNode node = pair.getKey();
+            depth = pair.getValue();
+            if(node.left != null){
+                q.add(new Pair<>(node.left, depth + 1));
+            }
+            if(node.right != null){
+                q.add(new Pair<>(node.right, depth + 1));
+            }
+        }
+        return depth;
+    }
+
+    class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
     }
 
     /**
