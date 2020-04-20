@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import javax.swing.tree.TreeNode;
+
 import javafx.util.Pair;
 
 /**
@@ -15,6 +17,31 @@ public class Functions_Easy {
     public static int strStr(String haystack, String needle){
 
         return -1;
+    }
+
+    private static int[] nums;
+
+    /**
+     * 将有序数组转换为二叉搜索树  答案不唯一
+     * @param left
+     * @param right
+     * @return
+     */
+    public static TreeNode helper(int left, int right){
+        if(left > right){
+            return null;
+        }
+
+        int indexP = (left + right) / 2; // 用如果是偶数个数，则用中间左边那个元素为根元素（选择不同，结果不同，所以答案不唯一）
+        TreeNode root = new TreeNode(nums[indexP]);
+        root.left = helper(left, indexP -1);
+        root.right = helper(indexP + 1, right);
+        return root;
+    }
+
+    public static TreeNode sortedArrayToBST(int[] nums) {
+        Functions_Easy.nums = nums;
+        return helper(0, nums.length - 1);
     }
 
     /**
@@ -62,7 +89,7 @@ public class Functions_Easy {
         return depth;
     }
 
-    class TreeNode {
+    static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
