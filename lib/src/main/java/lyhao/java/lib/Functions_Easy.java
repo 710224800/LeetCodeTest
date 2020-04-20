@@ -20,6 +20,27 @@ public class Functions_Easy {
     }
 
     /**
+     * 位1的个数
+     *
+     * 输入：00000000000000000000000000001011
+     * 输出：3
+     * 解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 '1'。
+     *
+     * @param n
+     * @return
+     */
+    public static int hammingWeight(int n) {
+        int sum = 0;
+        while (n != 0) {
+//            System.out.println(Integer.toBinaryString(n));
+//            System.out.println(Integer.toBinaryString(n-1));
+            sum++;
+            n &= (n - 1);
+        }
+        return sum;
+    }
+
+    /**
      * Excel表列序号
      * 示例 1:       示例 2:        示例 3:
      * 输入: "A"     输入: "AB"     输入: "ZY"
