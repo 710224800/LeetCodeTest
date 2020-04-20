@@ -19,6 +19,25 @@ public class Functions_Easy {
         return -1;
     }
 
+    /**
+     * Excel表列序号
+     * 示例 1:       示例 2:        示例 3:
+     * 输入: "A"     输入: "AB"     输入: "ZY"
+     * 输出: 1       输出: 28       输出: 701
+     * @param s
+     * @return
+     */
+    public int titleToNumber(String s) {
+        int result = 0;
+        for(int index = 0; index < s.length(); index++){
+            char c = s.charAt(index);
+            System.out.println(c);
+            int num = (c - 'A') + 1;
+            result = result * 26 + num;  // 可以理解为26进制，但还不太一样
+        }
+        return result;
+    }
+
     private static int[] nums;
 
     /**
