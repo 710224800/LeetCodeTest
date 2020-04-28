@@ -1,9 +1,11 @@
 package lyhao.java.lib;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 import javax.swing.tree.TreeNode;
@@ -19,6 +21,40 @@ public class Functions_Easy {
 
         return -1;
     }
+
+    /**
+     * 输出 杨辉三角 前numRows行
+     * @param numRows
+     * @return
+     */
+    public static List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList<>();
+        if(numRows <= 0){
+            return result;
+        }
+        List<Integer> row = new ArrayList<>();
+        row.add(1);
+        result.add(row);
+        for (int i = 1; i < numRows; i++){
+            List<Integer> listRow = new ArrayList<>();
+
+            listRow.add(1);
+
+            for(int j = 1; j < i; j ++){
+                List<Integer> preRow = result.get(i - 1);
+                if(preRow.size() >= 2) {
+                    listRow.add(preRow.get(j - 1) + preRow.get(j));
+                }
+            }
+
+            listRow.add(1);
+
+            result.add(listRow);
+        }
+        return result;
+    }
+
+
     /**
      概念
      如果我们对 0 和二进制位做 XOR 运算，得到的仍然是这个二进制位
