@@ -2,6 +2,7 @@ package lyhao.java.lib;
 
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -17,6 +18,36 @@ public class Functions_Easy {
     public static int strStr(String haystack, String needle){
 
         return -1;
+    }
+    /**
+     概念
+     如果我们对 0 和二进制位做 XOR 运算，得到的仍然是这个二进制位
+        a⊕0=a
+     如果我们对相同的二进制位做 XOR 运算，返回的结果是 0
+        a⊕a=0
+     XOR 满足交换律和结合律
+        a⊕b⊕a=(a⊕a)⊕b=0⊕b=b
+     */
+    public static int singleNumber2(int[] nums) {
+        int result = 0;
+        for(int i : nums){
+            result = result ^ i;
+        }
+        return result;
+    }
+
+    public static int singleNumber(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        int twoBeiCount = 0;
+        int count = 0;
+        for(int i : nums){
+            count += i;
+            if(!set.contains(i)){
+                set.add(i);
+                twoBeiCount += i;
+            }
+        }
+        return twoBeiCount * 2 - count;
     }
 
     /**
