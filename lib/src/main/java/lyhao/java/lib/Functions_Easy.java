@@ -3,6 +3,7 @@ package lyhao.java.lib;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,13 +24,50 @@ public class Functions_Easy {
     }
 
     /**
-     * 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
-     * 示例:
-     * 输入: [0,1,0,3,12]
-     * 输出: [1,3,12,0,0]
-     * https://leetcode-cn.com/problems/move-zeroes/solution/dong-hua-yan-shi-283yi-dong-ling-by-wang_ni_ma/
-     * @param nums
+     * 给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。
+     *
+     * 示例 1:
+     *
+     * 输入: s = "anagram", t = "nagaram"
+     * 输出: true
+     * 示例 2:
+     *
+     * 输入: s = "rat", t = "car"
+     * 输出: false
+     * 说明:
+     * 你可以假设字符串只包含小写字母。
+     *
+     * 进阶:
+     * 如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？
+     * 答：使用hashMap
      */
+    public static boolean isAnagram(String s, String t) {
+        if(s.length() != t.length()){
+            return false;
+        }
+        int[] table = new int[26];
+        for(int i = 0; i < s.length(); i++){
+            int sKey = s.charAt(i) - 'a';
+            table[sKey] ++;
+        }
+        for(int i = 0; i < t.length(); i++){
+            int tKey = t.charAt(i) - 'a';
+            table[tKey] --;
+            if(table[tKey] < 0){
+                return false;
+            }
+        }
+        return true;
+    }
+
+        /**
+         * 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
+         * 示例:
+         * 输入: [0,1,0,3,12]
+         * 输出: [1,3,12,0,0]
+         * https://leetcode-cn.com/problems/move-zeroes/solution/dong-hua-yan-shi-283yi-dong-ling-by-wang_ni_ma/
+         * @param nums
+         */
     public static void moveZeroes(int[] nums) {
         if(nums==null) {
             return;
