@@ -1,11 +1,65 @@
 package lyhao.java.lib;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * Created by luyanhao on 2020/2/26.
  */
 public class Functions_Middle {
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode(int x) {
+            val = x;
+        }
+    }
+
+    /**
+     * 中序遍历
+     */
+    public static List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> results = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode pNode = root;
+        while(pNode != null || !stack.isEmpty()){
+            if(pNode != null){
+                stack.push(pNode);
+                pNode = pNode.left;
+            } else {
+                TreeNode node = stack.pop();
+                results.add(node.val);
+                pNode = node.right;
+            }
+        }
+        return results;
+    }
+
+    /**
+     * 子集
+     * @param nums
+     * @return
+     */
+    public static List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> output = new ArrayList<>();
+        output.add(new ArrayList<Integer>());
+
+        for (final int num : nums) {
+            List<List<Integer>> newSubsets = new ArrayList<>();
+            for (List<Integer> curr : output) {
+                ArrayList<Integer> newCurr = new ArrayList<>(curr);
+                newCurr.add(num);
+                newSubsets.add(newCurr);
+            }
+            output.addAll(newSubsets);
+        }
+        return output;
+    }
+
     /**
      * 字符串转换整数(atoi)
      * @param str
